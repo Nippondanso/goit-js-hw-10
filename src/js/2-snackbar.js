@@ -38,6 +38,7 @@ form.addEventListener(
     const stateValue = formData.get('state');
 
     createPromise(delayValue, stateValue);
+    form.reset();
   },
   false,
 );
