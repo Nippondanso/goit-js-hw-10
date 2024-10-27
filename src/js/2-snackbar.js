@@ -1,10 +1,8 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-
 const form = document.querySelector('.form');
 const delayInput = document.querySelector('.delay-input');
-
 
 const createPromise = (delay, state) => {
   if (state === 'fulfilled') {
@@ -13,6 +11,7 @@ const createPromise = (delay, state) => {
       iziToast.success(
         {
           message: `Fulfilled promise in ${delay} ms`,
+          position: 'topRight',
         },
       );
     }, delay);
@@ -22,6 +21,8 @@ const createPromise = (delay, state) => {
       iziToast.error(
         {
           message: `Rejected promise in ${delay} ms`,
+          position: 'topRight',
+
         },
       );
     }, delay);
