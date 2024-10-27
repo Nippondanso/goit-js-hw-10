@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+
 h1,
 h2,
 h3,
@@ -23,12 +28,89 @@ a {
   text-decoration: none;
 }
 
-button {
-  cursor: pointer;
+input[type='text'],
+input[type='number'] {
+  min-width: 272px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color var(--animation-time) var(--cubic);
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+
+input[type='text'] {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-right: 8px;
+  margin-bottom: 32px;
 }
+
+
+input[type='text']:hover,
+input[type='number']:hover {
+  border-color: #000;
+}
+
+input[type='text']:active,
+input[type='text']:focus {
+  border-color: #4e75ff;
+}
+
+input[type='text']:disabled {
+  background-color: #fafafa;
+  color: #808080;
+  border-color: #808080;
+}
+
+input[type='number']:focus-within {
+  border-color: #4e75ff;
+}
+
+button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  height: 40px;
+  background: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--animation-time) var(--cubic);
+}
+
+button:hover {
+  background: #6c8cff;
+}
+
+button:disabled {
+  background: #cfcfcf;
+  color: #989898;
+}
+
+.back-link {
+  text-decoration: none; /* Remove underline */
+  color: #007bff;       /* Bootstrap primary color (blue) */
+  font-weight: bold;    /* Bold text */
+  font-size: 16px;      /* Font size */
+}
+
+.back-link:hover {
+  text-decoration: underline; /* Underline on hover */
+  color: #0056b3;             /* Darker blue on hover */
+}
+
+
+/*img {*/
+/*  display: block;*/
+/*  max-width: 100%;*/
+/*  height: auto;*/
+/*}*/
+
