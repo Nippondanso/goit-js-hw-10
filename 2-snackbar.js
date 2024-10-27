@@ -1,0 +1,2 @@
+import"./assets/modulepreload-polyfill-B5Qt9EMX.js";/* empty css                      */import"./assets/vendor-BbbuE1sJ.js";const n=document.querySelector(".form");document.querySelector(".delay-input");n.addEventListener("submit",function(t){t.preventDefault();const e=new FormData(this),o=e.get("delay"),a=e.get("state");console.log("Delay (ms):",o),console.log("State:",a)},!1);
+//# sourceMappingURL=2-snackbar.js.map
