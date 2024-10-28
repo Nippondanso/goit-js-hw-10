@@ -2,31 +2,42 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
-const delayInput = document.querySelector('.delay-input');
 
 const createPromise = (delay, state) => {
-  if (state === 'fulfilled') {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log(`✅ Fulfilled promise in ${delay}ms`);
-      iziToast.success(
-        {
-          message: `Fulfilled promise in ${delay} ms`,
-          position: 'topRight',
-        },
-      );
+      if (state === 'fulfilled') {
+        return resolve({
+          log: `✅ Fulfilled promise in ${delay}ms`,
+          toastMessage: `Fulfilled promise in ${delay} ms`,
+        });
+      } else {
+        return reject({
+          log: `❌ Rejected promise in ${delay}ms`,
+          toastMessage: `Rejected promise in ${delay}ms`,
+        });
+      }
     }, delay);
-  } else {
-    setTimeout(() => {
-      console.log(`❌ Rejected promise in ${delay}ms`);
-      iziToast.error(
-        {
-          message: `Rejected promise in ${delay} ms`,
-          position: 'topRight',
+  });
+};
 
-        },
-      );
-    }, delay);
-  }
+const judgePromiseResult = data => {
+  return data.includes('✅');
+};
+
+const notify = (log, toastMessage) => {
+  console.log(log);
+  judgePromiseResult(log)
+    ? iziToast.success(
+      {
+        message: toastMessage,
+        position: 'topRight',
+      })
+    : iziToast.error(
+      {
+        message: toastMessage,
+        position: 'topRight',
+      });
 };
 
 form.addEventListener(
@@ -38,7 +49,13 @@ form.addEventListener(
     const delayValue = formData.get('delay');
     const stateValue = formData.get('state');
 
-    createPromise(delayValue, stateValue);
+    createPromise(delayValue, stateValue)
+      .then(r => {
+        notify(r.log, r.toastMessage);
+      })
+      .catch(err => {
+        notify(err.log, err.toastMessage);
+      });
     form.reset();
   },
   false,
